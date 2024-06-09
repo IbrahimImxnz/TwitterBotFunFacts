@@ -7,12 +7,24 @@ from bs4 import BeautifulSoup
 import requests
 import os
 from dotenv import load_dotenv
-load_dotenv()
-consumer_key = os.getenv('consumer_key')
-consumer_secret = os.getenv('consumer_key')
-access_token = os.getenv('access_token')
-access_secret = os.getenv('access_secret')
-bearer_token = os.getenv('bearer_token')
+
+
+dotenv_path = os.path.join(os.path.dirname(__file__), 'keys.env') #path of .env file
+load_dotenv(dotenv_path)
+
+consumer_key = os.getenv('CONSUMER_KEY')
+consumer_secret = os.getenv('CONSUMER_SECRET')
+access_token = os.getenv('ACCESS_TOKEN')
+access_secret = os.getenv('ACCESS_SECRET')
+bearer_token = os.getenv('BEARER_TOKEN')
+
+#print(f"CONSUMER_KEY: {consumer_key}")
+#print(f"CONSUMER_SECRET: {consumer_secret}")
+#print(f"ACCESS_TOKEN: {access_token}")
+#print(f"ACCESS_SECRET: {access_secret}")
+#print(f"BEARER_TOKEN: {bearer_token}")
+
+
 #auth.set_access_token(access_token,access_secret)
 #pi = tweepy.API(auth)
 client = tweepy.Client(bearer_token=bearer_token, consumer_key=consumer_key,consumer_secret=consumer_secret,access_token=access_token,access_token_secret=access_secret)
@@ -31,7 +43,7 @@ client = tweepy.Client(bearer_token=bearer_token, consumer_key=consumer_key,cons
 #   for section in short:  
 #        ffacts.append(section.get_text(strip=True))
  #   return ffacts
-url = "C:\Users\imxnz\TwBot1\facts.txt"
+url = r"C:\Users\imxnz\TwBot1\facts.txt"
 def funfacts(url):
     with open(url, 'r') as f:
        facts = f.readlines()
